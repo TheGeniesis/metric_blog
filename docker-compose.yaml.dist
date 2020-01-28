@@ -27,3 +27,6 @@ services:
       - php-fpm
     volumes:
       - ./logs/nginx/:/var/log/nginx:cached
+
+  redis:
+    image: redis:3

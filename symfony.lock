@@ -87,6 +87,9 @@
     "laminas/laminas-zendframework-bridge": {
         "version": "1.0.1"
     },
+    "monolog/monolog": {
+        "version": "1.25.3"
+    },
     "ocramius/package-versions": {
         "version": "1.5.1"
     },
@@ -95,6 +98,9 @@
     },
     "php": {
         "version": "7.4"
+    },
+    "predis/predis": {
+        "version": "v1.1.1"
     },
     "psr/cache": {
         "version": "1.0.1"
@@ -195,6 +201,23 @@
     "symfony/mime": {
         "version": "v4.4.3"
     },
+    "symfony/monolog-bridge": {
+        "version": "v4.4.3"
+    },
+    "symfony/monolog-bundle": {
+        "version": "3.3",
+        "recipe": {
+            "repo": "github.com/symfony/recipes",
+            "branch": "master",
+            "version": "3.3",
+            "ref": "222b46a1bb02cd04bbc59700adec2f44f1a644b7"
+        },
+        "files": [
+            "config/packages/dev/monolog.yaml",
+            "config/packages/prod/monolog.yaml",
+            "config/packages/test/monolog.yaml"
+        ]
+    },
     "symfony/orm-pack": {
         "version": "v1.0.7"
     },
@@ -238,6 +261,12 @@
     },
     "symfony/yaml": {
         "version": "v4.4.3"
+    },
+    "tweedegolf/prometheus-bundle": {
+        "version": "v0.3.0"
+    },
+    "tweedegolf/prometheus-client": {
+        "version": "v0.3.0"
     },
     "webimpress/safe-writer": {
         "version": "2.0.0"
