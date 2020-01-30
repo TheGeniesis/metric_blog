@@ -13,9 +13,6 @@ start:
 		docker-compose up -d
 		docker-compose run --rm php-fpm composer install
 
-bash:
-		docker exec -it metric_art_php-fpm_1 bash
-
 remove:
 		docker-compose down -v
 		docker network rm metric_article_network
