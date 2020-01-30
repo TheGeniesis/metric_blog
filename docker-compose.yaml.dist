@@ -12,7 +12,10 @@ services:
       - metric_article_network
 
   php-fpm:
-    build: docker/image
+    build:
+      context: ./
+      dockerfile: ./docker/image/Dockerfile 
+    image: metric_app:unreleased
     command: ["--start-cgi-server"]
     ports:
       - '9002:9000'
@@ -25,7 +28,10 @@ services:
       - metric_article_network
 
   nginx:
-    build: docker/image
+    build:
+      context: ./
+      dockerfile: ./docker/image/Dockerfile 
+    image: metric_app:unreleased
     command: ["--start-http-server"]
     ports:
       - '80:80'

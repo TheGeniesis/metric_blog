@@ -12,7 +12,7 @@ substitute_environment_variables()
 set -e
 
 echo "$1" > /run/docker-entrypoint-command.txt
-
+case "$1" in
   '--start-cgi-server')
     php-fpm --nodaemonize
   ;;

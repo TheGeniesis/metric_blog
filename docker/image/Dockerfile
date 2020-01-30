@@ -40,13 +40,8 @@ CMD ["--start-http-server"]
 ENV APP_CGI_SERVER_HOST="php-fpm" \
   APP_CGI_SERVER_PORT="9000"
 
-COPY ./composer.json ./app/composer.lock /var/www/project/
-
-RUN composer install --no-dev --no-scripts --no-autoloader --no-ansi --ignore-platform-reqs
-
 COPY ./ /var/www/project
-RUN composer install --no-dev --no-interaction \
-  && composer install --no-dev --optimize-autoloader
+RUN composer install
 
 RUN chmod -R a+r /var/www/project \
 && chmod -R a+x /var/www/project/bin/* \
