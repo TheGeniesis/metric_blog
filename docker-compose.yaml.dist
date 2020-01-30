@@ -8,6 +8,9 @@ services:
       - POSTGRES_PASSWORD=postgres
     ports:
       - '5433:5432'
+    networks:
+      - metric_article_network
+
   php-fpm:
     build: docker/php-fpm
     ports:
@@ -17,6 +20,9 @@ services:
       - ./logs/symfony:/var/www/project/var/logs:cached
     links:
       - postgres
+    networks:
+      - metric_article_network
+
   nginx:
     build: docker/nginx
     ports:
@@ -27,6 +33,14 @@ services:
       - php-fpm
     volumes:
       - ./logs/nginx/:/var/log/nginx:cached
+    networks:
+      - metric_article_network
 
   redis:
     image: redis:3
+    networks:
+      - metric_article_network
+
+networks:
+  metric_article_network:
+    external: true
