@@ -16,3 +16,6 @@ start:
 remove:
 		docker-compose down -v
 		docker network rm metric_article_network
+
+build-image:
+		docker build -t metric_blog -f docker/image/Dockerfile .
