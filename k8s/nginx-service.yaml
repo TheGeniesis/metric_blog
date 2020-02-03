@@ -4,7 +4,6 @@ metadata:
   name: web
   labels:
     app: web
-    scrapemetrics: http
 spec:
   ports:
   - name: "http"

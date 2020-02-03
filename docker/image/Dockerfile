@@ -23,10 +23,9 @@ RUN ln -s /usr/share/zoneinfo/Europe/Berlin /etc/localtime
 RUN "date"
 
 ADD ./docker/image/etc/nginx/nginx.conf /etc/nginx/
-ADD ./docker/image/etc/nginx/symfony.conf /etc/nginx/sites-available/
+ADD ./docker/image/etc/nginx/symfony.conf /etc/nginx/sites-available/symfony.conf.template
 
-RUN ln -s /etc/nginx/sites-available/symfony.conf /etc/nginx/sites-enabled/symfony \
-  && rm /etc/nginx/sites-enabled/default
+RUN rm /etc/nginx/sites-enabled/default
 
 ADD ./docker/image/bin/entrypoint.bash /usr/local/bin/entrypoint
 RUN chmod a+x /usr/local/bin/entrypoint
@@ -38,7 +37,8 @@ ENTRYPOINT ["entrypoint"]
 CMD ["--start-http-server"]
 
 ENV APP_CGI_SERVER_HOST="php-fpm" \
-  APP_CGI_SERVER_PORT="9000"
+  APP_CGI_SERVER_PORT="9000" \
+  APP_UPDATE_DATABASE="on"
 
 COPY ./ /var/www/project
 RUN composer install

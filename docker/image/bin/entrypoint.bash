@@ -14,11 +14,17 @@ set -e
 echo "$1" > /run/docker-entrypoint-command.txt
 case "$1" in
   '--start-cgi-server')
+    if [ "$APP_UPDATE_DATABASE" == "on" ]
+    then
+      php bin/console doctrine:database:create --if-not-exists
+      php bin/console doctrine:m:m --no-interaction
+    fi
     php-fpm --nodaemonize
   ;;
 
   '--start-http-server')
-    substitute_environment_variables < /etc/nginx/sites-available/symfony.conf > /etc/nginx/sites-available/symfony.conf
+    substitute_environment_variables < /etc/nginx/sites-available/symfony.conf.template > /etc/nginx/sites-available/symfony.conf
+    ln -s /etc/nginx/sites-available/symfony.conf /etc/nginx/sites-enabled/symfony
     nginx -g 'daemon off;'
   ;;
 

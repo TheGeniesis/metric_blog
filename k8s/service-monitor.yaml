@@ -1,18 +1,18 @@
 apiVersion: monitoring.coreos.com/v1
 kind: ServiceMonitor
 metadata:
+  generation: 1
   labels:
-    app: metric-app
-  name: metric-scrape
-  namespace: default
+    app: web
+    release: prometheus-operator
+  name: web-app-sm
 spec:
   endpoints:
-  - port: http
-    path: /metrics
-    interval: 15s
-  jobLabel: jobLabel
+  - path: /metrics
+    port: http
+  namespaceSelector:
+    matchNames:
+    - default
   selector:
     matchLabels:
       app: web
-      scrapemetrics: http
-
