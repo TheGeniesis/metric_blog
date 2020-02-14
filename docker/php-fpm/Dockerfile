@@ -15,6 +15,8 @@ RUN apt-get install -y zlib1g-dev libpq-dev git libicu-dev libxml2-dev libzip-de
 
 RUN curl --insecure https://getcomposer.org/composer.phar -o /usr/bin/composer && chmod +x /usr/bin/composer
 
+COPY ./ /var/www/project
+
 # Set timezone
 RUN rm /etc/localtime
 RUN ln -s /usr/share/zoneinfo/Europe/Berlin /etc/localtime

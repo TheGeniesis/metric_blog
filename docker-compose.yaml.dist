@@ -34,7 +34,7 @@ services:
     image: metric_app:unreleased
     command: ["--start-http-server"]
     ports:
-      - '80:80'
+      - '8081:80'
     links:
       - php-fpm
     volumes_from:
