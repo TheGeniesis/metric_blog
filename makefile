@@ -1,4 +1,4 @@
-init:
+init-dev:
 		test -f .env || cp .env.dist .env
 		test -f docker-compose.yaml || cp docker-compose.yaml.dist docker-compose.yaml
 		docker network create --driver=bridge metric_article_network || true
@@ -8,18 +8,24 @@ init:
 		docker-compose run --rm php-fpm bin/console doctrine:database:create
 		docker-compose run --rm php-fpm php bin/console doctrine:m:m --no-interaction
 		docker-compose run --rm php-fpm bin/console doctrine:schema:update --force
-		
-start:
+
+start-dev:
 		docker-compose up -d
 		docker-compose run --rm php-fpm composer install
 
-remove:
+remove-dev:
 		docker-compose down -v
 		docker network rm metric_article_network
 
+init:
+		test -f .env || cp .env.dist .env
+		test -f docker-compose.yaml || cp docker-compose.yaml.dist docker-compose.yaml
+
 build-image:
 		docker-compose build
+
 load-image-kind:
 		kind load docker-image metric_app:unreleased
+
 deploy-on-k8s:
 		kubectl apply -f k8s -R
