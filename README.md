@@ -17,30 +17,28 @@ Application has 5 endpoints:
 ## Pre-requirements
 - [Docker](https://www.docker.com/)
 - [Docker-compose](https://docs.docker.com/compose/)
-- [kind](https://kind.sigs.k8s.io/docs/user/quick-start/)
-- Unix system (to run [makefile](https://www.gnu.org/software/make/manual/html_node/Introduction.html))
+- [Kind](https://kind.sigs.k8s.io/docs/user/quick-start/)
+- [Task](https://taskfile.dev) (optional, you can run commands from `taskfile.yaml` manually)
 
 > Application wasn't tested on Windows
 
 ## Setup
 ### Installation
-- Run `make init`
+- Run `task init`
 
 ### Run application
 - Setup environment: #repo od Kamila
-- Run `make build-image`
-- Run `make load-image-kind`
-- Run `make deploy-on-k8s`
+- Run `task start`
 - Open `http://localhost` to check if works
 - To generate some example traffic use [prepared stress tests project](https://github.com/TheGeniesis/metric_blog_stress_tests)
 
-### Remove application
-- Run `make remove`
-
 ## Development 
 ### Installation
-- Run `make init-dev`
+- Run `task init-dev`
 
 ### Run application
-- Run `make start-dev`
+- Run `task start-dev`
 - Open `http://localhost` to check if works
+
+### Remove application
+- Run `task remove-dev`
